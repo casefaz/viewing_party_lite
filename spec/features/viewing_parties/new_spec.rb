@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe 'New party page', type: :feature do
   before(:each) do
-    @user1 = User.create!(name: 'Ana', email: 'ana@example.com')
-    @user2 = User.create!(name: 'Dana', email: 'dana@example.com')
-    @user3 = User.create!(name: 'Manolo', email: 'manolo@example.com')
+    @user1 = User.create!(name: 'Ana', email: 'ana@example.com', password: 'anabanana')
+    @user2 = User.create!(name: 'Dana', email: 'dana@example.com', password: 'danabanana')
+    @user3 = User.create!(name: 'Manolo', email: 'manolo@example.com', password: 'manolobanana')
     @movie_id = 238
   end
 

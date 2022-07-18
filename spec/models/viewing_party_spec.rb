@@ -39,9 +39,9 @@ RSpec.describe ViewingParty, type: :model do
     end
 
     it 'can identify the host' do 
-      user1 = User.create!(name: 'Parker', email: 'mangaforever@hootube.net')
-      user2 = User.create!(name: 'Lola', email: 'lola@example.com')
-      user3 = User.create!(name: 'Squiggles', email: 'goblindog@dogsshouldbeabletovote.org')
+      user1 = User.create!(name: 'Parker', email: 'mangaforever@hootube.net', password: 'mangaforever')
+      user2 = User.create!(name: 'Lola', email: 'lola@example.com', password: 'bugs4life')
+      user3 = User.create!(name: 'Squiggles', email: 'goblindog@dogsshouldbeabletovote.org', password: 'squigsforpres')
 
       party1 = ViewingParty.create!(movie_id: 129, duration: 96, date: Date.new(2022,9,7), start_time: "16:00:00")
 
@@ -54,10 +54,10 @@ RSpec.describe ViewingParty, type: :model do
     end
 
     it 'can find the guests' do 
-      user1 = User.create!(name: 'Parker', email: 'mangaforever@hootube.net')
-      user2 = User.create!(name: 'Lola', email: 'lola@example.com')
-      user3 = User.create!(name: 'Squiggles', email: 'goblindog@dogsshouldbeabletovote.org')
-      user4 = User.create!(name: 'Pancakes', email: 'spacecadet42@hootmail.com')
+      user1 = User.create!(name: 'Parker', email: 'mangaforever@hootube.net', password: 'mangaforever')
+      user2 = User.create!(name: 'Lola', email: 'lola@example.com', password: 'bugs4life')
+      user3 = User.create!(name: 'Squiggles', email: 'goblindog@dogsshouldbeabletovote.org', password: 'squigsforpres')
+      user4 = User.create!(name: 'Pancakes', email: 'spacecadet42@hootmail.com', password: 'emptyheadcleareyescantlose')
 
       party1 = ViewingParty.create!(movie_id: 129, duration: 96, date: Date.new(2022,9,7), start_time: "16:00:00") 
 

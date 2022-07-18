@@ -4,8 +4,8 @@ RSpec.describe 'User Dashboard Page', type: :feature do
 
   describe 'data is displayed on page'do
     it 'shows user name on dashboard' do
-      user1 = User.create!(name: 'Parker', email: 'mangaforever@hootube.net')
-      user2 = User.create!(name: 'Lola', email: 'lola@example.com')
+      user1 = User.create!(name: 'Parker', email: 'mangaforever@hootube.net', password: 'mangaforever')
+      user2 = User.create!(name: 'Lola', email: 'lola@example.com', password: 'bugs4life')
 
       visit user_path(user1.id)
       expect(page).to have_content("#{user1.name}'s Dashboard")
@@ -13,8 +13,8 @@ RSpec.describe 'User Dashboard Page', type: :feature do
     end
 
     it 'has a button to Discover Movies' do
-      user1 = User.create!(name: 'Parker', email: 'mangaforever@hootube.net')
-      user2 = User.create!(name: 'Lola', email: 'lola@example.com')
+      user1 = User.create!(name: 'Parker', email: 'mangaforever@hootube.net', password: 'mangaforever')
+      user2 = User.create!(name: 'Lola', email: 'lola@example.com', password: 'bugs4life')
 
       visit user_path(user1.id)
 
@@ -28,16 +28,16 @@ RSpec.describe 'User Dashboard Page', type: :feature do
   
   describe 'viewing parties section' do 
     it "has a section that lists the viewing parties" do
-      user1 = User.create!(name: 'Parker', email: 'mangaforever@hootube.net')
-      user2 = User.create!(name: 'Lola', email: 'lola@example.com')
+      user1 = User.create!(name: 'Parker', email: 'mangaforever@hootube.net', password: 'mangaforever')
+      user2 = User.create!(name: 'Lola', email: 'lola@example.com', password: 'bugs4life')
   
       visit user_path(user1.id)
       expect(page).to have_content("Viewing Parties")
     end
 
     it 'shows the movie attributes', :vcr do 
-      user1 = User.create!(name: 'Parker', email: 'mangaforever@hootube.net')
-      user2 = User.create!(name: 'Lola', email: 'lola@example.com')
+      user1 = User.create!(name: 'Parker', email: 'mangaforever@hootube.net', password: 'mangaforever')
+      user2 = User.create!(name: 'Lola', email: 'lola@example.com', password: 'bugs4life')
 
       party1 = ViewingParty.create!(movie_id: 129, duration: 96, date: Date.new(2022,9,7), start_time: "16:00:00")
       party2 = ViewingParty.create!(movie_id: 545611, duration: 175, date: Date.new(2023,4,4), start_time: "19:00:00")
@@ -59,7 +59,7 @@ RSpec.describe 'User Dashboard Page', type: :feature do
     end
 
     it 'shows the party attributes', :vcr do 
-      user1 = User.create!(name: 'Parker', email: 'mangaforever@hootube.net')
+      user1 = User.create!(name: 'Parker', email: 'mangaforever@hootube.net', password: 'mangaforever')
       party1 = ViewingParty.create!(movie_id: 129, duration: 96, date: Date.new(2022,9,7), start_time: "16:00:00")
       user_viewing1 = UserViewingParty.create!(user_id: user1.id, viewing_party_id: party1.id, host: false)
 
@@ -72,9 +72,9 @@ RSpec.describe 'User Dashboard Page', type: :feature do
     end
 
     it 'can identify the host', :vcr do 
-      user1 = User.create!(name: 'Parker', email: 'mangaforever@hootube.net')
-      user2 = User.create!(name: 'Lola', email: 'lola@example.com')
-      user3 = User.create!(name: 'Squiggles', email: 'goblindog@dogsshouldbeabletovote.org')
+      user1 = User.create!(name: 'Parker', email: 'mangaforever@hootube.net', password: 'mangaforever')
+      user2 = User.create!(name: 'Lola', email: 'lola@example.com', password: 'bugs4life')
+      user3 = User.create!(name: 'Squiggles', email: 'goblindog@dogsshouldbeabletovote.org', password: 'squigsforpres')
 
       party1 = ViewingParty.create!(movie_id: 129, duration: 96, date: Date.new(2022,9,7), start_time: "16:00:00")
 
@@ -91,10 +91,10 @@ RSpec.describe 'User Dashboard Page', type: :feature do
     end 
 
     it 'can list the attendees', :vcr do 
-      user1 = User.create!(name: 'Parker', email: 'mangaforever@hootube.net')
-      user2 = User.create!(name: 'Lola', email: 'lola@example.com')
-      user3 = User.create!(name: 'Squiggles', email: 'goblindog@dogsshouldbeabletovote.org')
-      user4 = User.create!(name: 'Pancakes', email: 'spacecadet42@hootmail.com')
+      user1 = User.create!(name: 'Parker', email: 'mangaforever@hootube.net', password: 'mangaforever')
+      user2 = User.create!(name: 'Lola', email: 'lola@example.com', password: 'bugs4life')
+      user3 = User.create!(name: 'Squiggles', email: 'goblindog@dogsshouldbeabletovote.org', password: 'squigsforpres')
+      user4 = User.create!(name: 'Pancakes', email: 'spacecadet42@hootmail.com', password: 'emptyheadcleareyescantlose')
 
       party1 = ViewingParty.create!(movie_id: 129, duration: 96, date: Date.new(2022,9,7), start_time: "16:00:00")
 
@@ -114,10 +114,10 @@ RSpec.describe 'User Dashboard Page', type: :feature do
     end
 
     it 'has a section for parties I created with me as the host',:vcr do 
-      user1 = User.create!(name: 'Parker', email: 'mangaforever@hootube.net')
-      user2 = User.create!(name: 'Lola', email: 'lola@example.com')
-      user3 = User.create!(name: 'Squiggles', email: 'goblindog@dogsshouldbeabletovote.org')
-      user4 = User.create!(name: 'Pancakes', email: 'spacecadet42@hootmail.com')
+      user1 = User.create!(name: 'Parker', email: 'mangaforever@hootube.net', password: 'mangaforever')
+      user2 = User.create!(name: 'Lola', email: 'lola@example.com', password: 'bugs4life')
+      user3 = User.create!(name: 'Squiggles', email: 'goblindog@dogsshouldbeabletovote.org', password: 'squigsforpres')
+      user4 = User.create!(name: 'Pancakes', email: 'spacecadet42@hootmail.com', password: 'emptyheadcleareyescantlose')
 
       party1 = ViewingParty.create!(movie_id: 129, duration: 96, date: Date.new(2022,9,7), start_time: "16:00:00")
       party2 = ViewingParty.create!(movie_id: 545611, duration: 175, date: Date.new(2023,4,4), start_time: "19:00:00") 
@@ -146,10 +146,10 @@ RSpec.describe 'User Dashboard Page', type: :feature do
     end
 
     it 'has a list of friends I have invited to the party', :vcr do 
-      user1 = User.create!(name: 'Parker', email: 'mangaforever@hootube.net')
-      user2 = User.create!(name: 'Lola', email: 'lola@example.com')
-      user3 = User.create!(name: 'Squiggles', email: 'goblindog@dogsshouldbeabletovote.org')
-      user4 = User.create!(name: 'Pancakes', email: 'spacecadet42@hootmail.com')
+      user1 = User.create!(name: 'Parker', email: 'mangaforever@hootube.net', password: 'mangaforever')
+      user2 = User.create!(name: 'Lola', email: 'lola@example.com', password: 'bugs4life')
+      user3 = User.create!(name: 'Squiggles', email: 'goblindog@dogsshouldbeabletovote.org', password: 'squigsforpres')
+      user4 = User.create!(name: 'Pancakes', email: 'spacecadet42@hootmail.com', password: 'emptyheadcleareyescantlose')
 
       party1 = ViewingParty.create!(movie_id: 129, duration: 96, date: Date.new(2022,9,7), start_time: "16:00:00") 
 
