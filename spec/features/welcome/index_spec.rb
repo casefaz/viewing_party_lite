@@ -24,10 +24,10 @@ RSpec.describe 'Welcome Index', type: :feature do
     end
   end
 
- xdescribe 'user lists' do
+ describe 'user lists' do
     it 'has a list of existing users which links to the users dashboard' do
-      user1 = User.create!(name: 'Deannah', email: 'rockyhorrorfan@gmail.com')
-      user2 = User.create!(name: 'Sai', email: 'movieluvr55@hotmail.com')
+      user1 = User.create!(name: 'Deannah', email: 'rockyhorrorfan@gmail.com', password: 'thebestoneyet')
+      user2 = User.create!(name: 'Sai', email: 'movieluvr55@hotmail.com', password: 'thecoolest')
 
       visit root_path
 

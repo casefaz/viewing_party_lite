@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe 'Movie Index Page', type: :feature do 
   describe 'title section' do 
     it 'has a list of the top rated films with a vote count', :vcr do 
-      user1 = User.create!(name: 'Andrew', email: 'concertenthusiast@musac.org')
-      user2 = User.create!(name: 'Sai', email: 'allthethings@hottooob.com')
+      user1 = User.create!(name: 'Andrew', email: 'concertenthusiast@musac.org', password: '150concerts')
+      user2 = User.create!(name: 'Sai', email: 'allthethings@hottooob.com', password: 'hotdog')
       
       visit user_movies_path(user1.id)
       expect(page.all('.movies').count).to eq(20)
@@ -19,7 +19,7 @@ RSpec.describe 'Movie Index Page', type: :feature do
 
   describe 'link to discovery page' do 
     it 'links back to the discovery page', :vcr do 
-      user1 = User.create!(name: 'Andrew', email: 'concertenthusiast@musac.org')
+      user1 = User.create!(name: 'Andrew', email: 'concertenthusiast@musac.org', password: '150concerts')
 
       visit user_movies_path(user1.id)
       
@@ -31,7 +31,7 @@ RSpec.describe 'Movie Index Page', type: :feature do
 
   describe 'search section' do 
     it 'can find partial matches', :vcr do 
-      user1 = User.create!(name: 'Andrew', email: 'concertenthusiast@musac.org')
+      user1 = User.create!(name: 'Andrew', email: 'concertenthusiast@musac.org', password: '150concerts')
 
       visit user_discover_path(user1.id)
       
