@@ -48,4 +48,13 @@ RSpec.describe User, type: :model do
       expect(user1.not_hosting).to_not eq([party1])
     end
   end
+
+  describe 'user with password' do 
+    it 'has a user with attributes' do 
+      user = User.create(name: 'Paige', email: 'luvisland22@hotmail.com', password: 'jaquesoradam?', password_confirmation: 'jaquesoradam?')
+
+      expect(user).to_not have_attribute(:password)
+      expect(user.password_digest).to_not eq('jaquesoradam?')
+    end
+  end
 end
