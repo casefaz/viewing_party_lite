@@ -24,7 +24,7 @@ RSpec.describe 'Welcome Index', type: :feature do
     end
   end
 
-  describe 'user lists' do
+ xdescribe 'user lists' do
     it 'has a list of existing users which links to the users dashboard' do
       user1 = User.create!(name: 'Deannah', email: 'rockyhorrorfan@gmail.com')
       user2 = User.create!(name: 'Sai', email: 'movieluvr55@hotmail.com')
@@ -40,6 +40,16 @@ RSpec.describe 'Welcome Index', type: :feature do
         click_link 'Deannah'
       end
       expect(current_path).to eq(user_path(user1.id))
+    end
+  end
+
+  describe 'login link' do 
+    it 'has a link to login' do 
+      visit root_path
+
+      expect(page).to have_link('Log In')
+      click_link('Log In')
+      expect(current_path).to eq('/login')
     end
   end
 end
