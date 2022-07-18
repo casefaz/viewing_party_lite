@@ -9,7 +9,6 @@ class UsersController < ApplicationController
   end
 
   def create
-    # binding.pry
     new_user = User.create(user_params)
     if new_user.save
       flash[:success] = "Welcome, #{new_user.email}!"
@@ -22,6 +21,10 @@ class UsersController < ApplicationController
 
   def discover
     @user = User.find(params[:user_id])
+  end
+
+  def login_form
+    
   end
 
 private
