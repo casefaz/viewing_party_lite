@@ -15,9 +15,9 @@ RSpec.describe User, type: :model do
   end
 
   describe 'instance methods' do 
-    xit 'can find the host' do 
-      user1 = User.create!(name: 'Parker', email: 'mangaforever@hootube.net')
-      user2 = User.create!(name: 'Lola', email: 'lola@example.com')
+    it 'can find the host' do 
+      user1 = User.create!(name: 'Parker', email: 'mangaforever@hootube.net', password: 'mangaforever')
+      user2 = User.create!(name: 'Lola', email: 'lola@example.com', password: 'bugs4life')
 
       party1 = ViewingParty.create!(movie_id: 129, duration: 96, date: Date.new(2022,9,7), start_time: "16:00:00")
       party2 = ViewingParty.create!(movie_id: 545611, duration: 175, date: Date.new(2023,4,4), start_time: "19:00:00")
@@ -32,9 +32,9 @@ RSpec.describe User, type: :model do
       expect(user1.party_host).to_not eq([party2, party3])
     end
 
-    xit 'produces the parties where the user is NOT the host' do 
-      user1 = User.create!(name: 'Parker', email: 'mangaforever@hootube.net')
-      user2 = User.create!(name: 'Lola', email: 'lola@example.com')
+    it 'produces the parties where the user is NOT the host' do 
+      user1 = User.create!(name: 'Parker', email: 'mangaforever@hootube.net', password: 'mangaforever')
+      user2 = User.create!(name: 'Lola', email: 'lola@example.com', password: 'bugs4life')
 
       party1 = ViewingParty.create!(movie_id: 129, duration: 96, date: Date.new(2022,9,7), start_time: "16:00:00")
       party2 = ViewingParty.create!(movie_id: 545611, duration: 175, date: Date.new(2023,4,4), start_time: "19:00:00")
