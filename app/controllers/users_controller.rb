@@ -30,8 +30,12 @@ class UsersController < ApplicationController
   def login_user
     # binding.pry
     user = User.find_by(email: params[:email])
-    flash[:success] = "Welcome, #{user.email}!"
-    redirect_to "/users/#{user.id}"
+    if user && user.authenticate(params[:password])
+      flash[:success] = "Welcome, #{user.email}!"
+      redirect_to "/users/#{user.id}"
+    else
+      flas[:error] = "Incorrect credentials"
+    end 
   end
 
 private
