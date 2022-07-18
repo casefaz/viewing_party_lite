@@ -1,5 +1,11 @@
 <h1> <%= @user.name %>'s Dashboard</h3>
 
+<% flash.each do |type, msg| %>
+  <div>
+    <%= msg %>
+  </div>
+<% end %>
+
 <div class="container" align="center" id="discover_movies">
 <%= button_to "Discover Movies", "/users/#{@user.id}/discover", method: :get%>
 </div>
@@ -44,9 +50,4 @@
 <% end %>
 </div>
 
-<% flash.each do |type, msg| %>
-  <div>
-    <%= msg %>
-  </div>
-<% end %>
 

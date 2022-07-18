@@ -7,5 +7,9 @@ RSpec.describe 'login form' do
 
     fill_in :email, with: 'gooddogs@gooddog.com'
     fill_in :password, with: 'ilikebarking'
+    click_on 'Log In'
+
+    expect(current_path).to eq "/users/#{user.id}"
+    expect(page).to have_content("Welcome, #{user.email}!")
   end
 end
