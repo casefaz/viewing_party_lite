@@ -45,18 +45,48 @@ RSpec.describe 'New User Form' do
   end
 
   describe 'registration with authentication' do 
-    it 'has a form that includes name and password' do 
-      visit '/register'
+    context 'happy path' do 
+      it 'has a form that includes name and password' do 
+        visit '/register'
 
-      fill_in 'Name', with: 'Pancakes'
-      fill_in 'Email', with: 'pancakesoverwaffles23@gmool.com'
-      fill_in 'Password', with: 'goodboy22'
-      fill_in 'Password confirmation', with: 'goodboy22'
-      click_on 'Register'
+        fill_in 'Name', with: 'Pancakes'
+        fill_in 'Email', with: 'pancakesoverwaffles23@gmool.com'
+        fill_in 'Password', with: 'goodboy22'
+        fill_in 'Password confirmation', with: 'goodboy22'
+        click_on 'Register'
 
-      current_user = User.last
-      expect(current_path).to eq("/users/#{current_user.id}")
-      expect(page).to have_content("Welcome, #{current_user.email}!")
+        current_user = User.last
+        expect(current_path).to eq("/users/#{current_user.id}")
+        expect(page).to have_content("Welcome, #{current_user.email}!")
+      end
+    end 
+
+    context 'sad path' do 
+      it 'has error handling for unmatched passwords' do
+        visit '/register'
+
+        fill_in 'Name', with: 'Pancakes'
+        fill_in 'Email', with: 'pancakesoverwaffles23@gmool.com'
+        fill_in 'Password', with: 'goodestboy22'
+        fill_in 'Password confirmation', with: 'goodboy22'
+        click_on 'Register'
+
+        expect(current_path).to eq('/register')
+        expect(page).to have_content("Password confirmation doesn't match Password")
+      end
+
+      it 'has error handling for missing information' do 
+        visit '/register'
+
+        fill_in 'Name', with: ''
+        fill_in 'Email', with: 'pancakesoverwaffles23@gmool.com'
+        fill_in 'Password', with: 'goodestboy22'
+        fill_in 'Password confirmation', with: 'goodboy22'
+        click_on 'Register'
+
+        expect(current_path).to eq('/register')
+        expect(page).to have_content("Name can't be blank")
+      end
     end
   end
 end

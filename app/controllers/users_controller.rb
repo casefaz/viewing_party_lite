@@ -14,7 +14,8 @@ class UsersController < ApplicationController
       flash[:success] = "Welcome, #{new_user.email}!"
       redirect_to user_path(new_user.id)
     else
-      redirect_to register_path, alert: "Cannot register, missing or repeated information"
+      flash[:error] = new_user.errors.full_messages
+      redirect_to register_path
    end 
   end
 
