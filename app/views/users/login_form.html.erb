@@ -1,3 +1,9 @@
+<% flash.each do |type, msg| %>
+  <div>
+    <%= msg %>
+  </div>
+<% end %>
+
 <%= form_with url: '/login', method: :post do |form| %>
   <%= form.label :email, 'Email:' %>
   <%= form.text_field :email %>
