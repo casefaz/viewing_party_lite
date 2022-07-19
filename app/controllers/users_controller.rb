@@ -5,8 +5,13 @@ class UsersController < ApplicationController
 
 
   def show
-    @user = current_user
-    @users = User.all
+    if current_user
+      @user = current_user
+      @users = User.all
+    else
+      redirect_to root_path
+      flash[:error] = "Please Log In First"
+    end 
   end
 
   def create

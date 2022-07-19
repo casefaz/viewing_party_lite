@@ -24,25 +24,6 @@ RSpec.describe 'Welcome Index', type: :feature do
     end
   end
 
- describe 'user lists' do
-    xit 'has a list of existing users which links to the users dashboard' do
-      user1 = User.create!(name: 'Deannah', email: 'rockyhorrorfan@gmail.com', password: 'thebestoneyet')
-      user2 = User.create!(name: 'Sai', email: 'movieluvr55@hotmail.com', password: 'thecoolest')
-
-      visit root_path
-
-      expect(page).to have_link 'Deannah'
-      expect(page).to have_link 'Sai'
-      expect(page).to have_content 'movieluvr55@hotmail.com'
-
-      within "#user-#{user1.id}" do
-        expect(page).to have_content('rockyhorrorfan@gmail.com')
-        click_link 'Deannah'
-      end
-      expect(current_path).to eq('/dashboard')
-    end
-  end
-
   describe 'login link' do 
     it 'has a link to login' do 
       visit root_path
@@ -103,6 +84,16 @@ RSpec.describe 'Welcome Index', type: :feature do
       expect(page).to have_content(user1.email)
       expect(page).to have_content(user2.email)
       expect(page).to_not have_link(user1.name)
+    end
+
+    it 'cant get past the landing page without logging in' do 
+      user1 = User.create!(name: 'Deannah', email: 'rockyhorrorfan@gmail.com', password: 'thebestoneyet')
+      visit root_path
+
+      expect(page).to have_content('Log In')
+      visit '/dashboard'
+      expect(current_path).to eq(root_path)
+      expect(page).to have_content('Please Log In First')
     end
   end
 end

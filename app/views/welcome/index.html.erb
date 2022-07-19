@@ -1,5 +1,11 @@
 <h1>Viewing Party Lite</h1>
 
+<% flash.each do |type, msg| %>
+  <div>
+    <%= msg %>
+  </div>
+<% end %>
+
 <% if current_user %>
   <%= link_to 'Log Out', '/logout', method: :delete, local: true %>
   <h3>Users</h3>
