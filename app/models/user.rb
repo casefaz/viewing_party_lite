@@ -6,6 +6,9 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
   validates_presence_of :password
   has_secure_password
+
+  enum role: %w(default manager admin)
+  
   def party_host
     viewing_parties.where(user_viewing_parties: {host: true})
   end

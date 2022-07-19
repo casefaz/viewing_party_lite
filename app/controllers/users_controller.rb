@@ -5,14 +5,21 @@ class UsersController < ApplicationController
 
 
   def show
-    @user = User.find(params[:id])
+    if current_user
+      @user = current_user
+      @users = User.all
+    else
+      redirect_to root_path
+      flash[:error] = "Please Log In First"
+    end 
   end
 
   def create
     new_user = User.create(user_params)
     if new_user.save
+      session[:user_id] = new_user.id
       flash[:success] = "Welcome, #{new_user.email}!"
-      redirect_to user_path(new_user.id)
+      redirect_to '/dashboard'
     else
       flash[:error] = new_user.errors.full_messages
       redirect_to register_path
@@ -20,22 +27,7 @@ class UsersController < ApplicationController
   end
 
   def discover
-    @user = User.find(params[:user_id])
-  end
-
-  def login_form
-
-  end
-
-  def login_user
-    user = User.find_by(email: params[:email])
-    if user && user.authenticate(params[:password])
-      flash[:success] = "Welcome, #{user.email}!"
-      redirect_to "/users/#{user.id}"
-    else
-      flash[:error] = "Incorrect credentials"
-      redirect_to '/login'
-    end 
+    @user = current_user
   end
 
 private

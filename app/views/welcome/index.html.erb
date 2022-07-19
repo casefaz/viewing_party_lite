@@ -1,12 +1,20 @@
 <h1>Viewing Party Lite</h1>
 
-<%= link_to 'Log In', '/login', method: :get %>
-<%= button_to 'Create a New User', '/register', method: :get %>
+<% flash.each do |type, msg| %>
+  <div>
+    <%= msg %>
+  </div>
+<% end %>
 
-<h3>Users</h3>
-<% @users.each do |user| %>
-<div id="user-<%= user.id %>">
-  <p>Name: <%= link_to "#{user.name}", user_path(user.id) %></p>
-  <p>Email: <%= user.email %></p>
-</div>
+<% if current_user %>
+  <%= link_to 'Log Out', '/logout', method: :delete, local: true %>
+  <h3>Users</h3>
+  <% @users.each do |user| %>
+  <div id="user-<%= user.id %>">
+    <p>Email: <%= user.email %></p>
+  </div>
+  <% end %>
+<% else %>
+  <%= link_to 'Log In', '/login', method: :get %>
+  <%= button_to 'Create a New User', '/register', method: :get %>
 <% end %>
