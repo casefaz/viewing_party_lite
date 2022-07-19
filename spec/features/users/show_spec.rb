@@ -59,7 +59,7 @@ RSpec.describe 'User Dashboard Page', type: :feature do
         expect(page).to_not have_content('Thor Ragnarok')
         click_link 'Spirited Away'
       end
-      expect(current_path).to eq(user_movie_path(user1.id, party1.movie_id))
+      expect(current_path).to eq("/movies/#{party1.movie_id}")
     end
 
     it 'shows the party attributes', :vcr do 
