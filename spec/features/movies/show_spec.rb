@@ -82,7 +82,7 @@ RSpec.describe 'movie show page' do
 
   it "displays count of total reviews", :vcr do
     @user = User.create!(name: 'Badger', email: 'honey@gmail.com', password: 'honeybadger')
-    visit "movies/238"
+    visit "movies/#{@movie1.id}"
 
     expect(page).to have_content("1")
     expect(page).to_not have_content("3")
@@ -90,10 +90,20 @@ RSpec.describe 'movie show page' do
 
   it "displays each review's author and information", :vcr do
     @user = User.create!(name: 'Badger', email: 'honey@gmail.com', password: 'honeybadger')
-    visit "movies/238"
+    visit "movies/#{@movie1.id}"
 
     expect(page).to have_content("The Godfather Review")
     expect(page).to_not have_content("none")
+    end
+  end
+
+  describe 'authorization', :vcr do
+    it 'cant create a viewing party unless logged in' do 
+      visit "movies/#{@movie1.id}"
+
+      click_on 'Create Viewing Party for The Godfather'
+      expect(current_path).to eq("movies/#{@movie1.id}")
+      expect(page).to have_content('Must be logged in or registered to create party')
     end
   end
 end
