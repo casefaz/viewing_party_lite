@@ -6,6 +6,8 @@ RSpec.describe 'New party page', type: :feature do
     @user2 = User.create!(name: 'Dana', email: 'dana@example.com', password: 'danabanana')
     @user3 = User.create!(name: 'Manolo', email: 'manolo@example.com', password: 'manolobanana')
     @movie_id = 238
+
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user1)
   end
 
   it 'When I visit the new party page has movie title', :vcr do
@@ -55,7 +57,7 @@ RSpec.describe 'New party page', type: :feature do
         click_button('Create')
       end
 
-      expect(current_path).to eq(user_path(@user1.id))
+      expect(current_path).to eq('/dashboard')
 
       within ".hostParty" do
         expect(page).to have_content("The Godfather")
@@ -81,7 +83,8 @@ RSpec.describe 'New party page', type: :feature do
         click_button('Create')
       end
 
-      visit user_path(@user2.id)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user2)
+      visit '/dashboard'
 
       within ".invites" do
         expect(page).to have_content("The Godfather")
@@ -106,7 +109,7 @@ RSpec.describe 'New party page', type: :feature do
         click_button('Create')
       end
 
-      expect(current_path).to eq(user_path(@user1.id))
+      expect(current_path).to eq('/dashboard')
 
       within ".hostParty" do
         expect(page).to have_content("The Godfather")

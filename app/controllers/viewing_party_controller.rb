@@ -2,7 +2,7 @@ class ViewingPartyController < ApplicationController
 
   def new
     @movie = MovieFacade.movie_id_search(params[:movie_id])
-    # @movie_id = params[:movie_id]
+    @movie_id = params[:movie_id]
     @user_id = params[:user_id].to_i
     @users = User.all
   end
@@ -27,7 +27,7 @@ class ViewingPartyController < ApplicationController
           UserViewingParty.create!(user_id: host_id, viewing_party_id: viewing_party.id, host: true)
         end
       end
-      redirect_to user_path(host_id)
+      redirect_to '/dashboard'
     end
   end
 end
