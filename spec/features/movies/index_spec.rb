@@ -20,11 +20,12 @@ RSpec.describe 'Movie Index Page', type: :feature do
   describe 'link to discovery page' do 
     it 'links back to the discovery page', :vcr do 
       user1 = User.create!(name: 'Andrew', email: 'concertenthusiast@musac.org', password: '150concerts')
-
+      
       visit user_movies_path(user1.id)
       
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user1)
       click_link 'Discover Page'
-      expect(current_path).to eq(user_discover_path(user1.id))
+      expect(current_path).to eq('/discover')
       expect(page).to have_content("#{user1.name}'s Discover Page")
     end
   end
@@ -32,8 +33,9 @@ RSpec.describe 'Movie Index Page', type: :feature do
   describe 'search section' do 
     it 'can find partial matches', :vcr do 
       user1 = User.create!(name: 'Andrew', email: 'concertenthusiast@musac.org', password: '150concerts')
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user1)
 
-      visit user_discover_path(user1.id)
+      visit '/discover'
       
       fill_in :search, with: 'spirit'
       click_on 'Find Movies'
