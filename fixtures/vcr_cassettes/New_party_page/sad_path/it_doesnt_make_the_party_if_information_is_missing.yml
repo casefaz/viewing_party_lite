@@ -18,59 +18,47 @@ http_interactions:
       code: 200
       message: OK
     headers:
-      Date:
-      - Tue, 19 Jul 2022 21:38:13 GMT
       Content-Type:
-      - application/json; charset=utf-8
+      - application/json;charset=utf-8
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      Vary:
-      - Accept-Encoding
+      Date:
+      - Tue, 19 Jul 2022 21:22:37 GMT
       Server:
-      - BunnyCDN-NY-885
-      Cdn-Pullzone:
-      - '775334'
-      Cdn-Uid:
-      - 29af4e0e-bcbd-4fcb-8635-74ddc38a1ebf
-      Cdn-Requestcountrycode:
-      - US
-      Access-Control-Allow-Methods:
-      - GET, HEAD, POST, PUT, DELETE, OPTIONS
+      - openresty
       Access-Control-Allow-Origin:
       - "*"
+      Access-Control-Allow-Methods:
+      - GET, HEAD, POST, PUT, DELETE, OPTIONS
       Access-Control-Expose-Headers:
       - ETag, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, Retry-After,
         Content-Length, Content-Range
       Cache-Control:
       - public, max-age=28800
-      Etag:
-      - W/"11f4175ba26e241bff332128a8924ca5"
       X-Memc:
       - HIT
       X-Memc-Key:
       - 647ad0139961d413fe867b26138edd06a9b4ce4d
       X-Memc-Age:
-      - '15989'
+      - '15053'
       X-Memc-Expires:
-      - '129'
-      Cdn-Proxyver:
-      - '1.02'
-      Cdn-Requestpullsuccess:
-      - 'True'
-      Cdn-Requestpullcode:
-      - '200'
-      Cdn-Cachedat:
-      - 07/19/2022 21:38:13
-      Cdn-Edgestorageid:
-      - '885'
-      Cdn-Status:
-      - '200'
-      Cdn-Requestid:
-      - 93e4666b94c01709031b95f1613b7909
-      Cdn-Cache:
-      - HIT
+      - '1065'
+      Etag:
+      - W/"11f4175ba26e241bff332128a8924ca5"
+      Vary:
+      - Accept-Encoding
+      X-Cache:
+      - Hit from cloudfront
+      Via:
+      - 1.1 48ea53c7edffa2cdbdc32f7d94966344.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - DEN50-C2
+      X-Amz-Cf-Id:
+      - kxdu6bo5p418Vd25hGtJZhg43O6Z4yjJtxOjOqYzoUE50Kq1t_3Wgw==
+      Age:
+      - '7103'
     body:
       encoding: ASCII-8BIT
       string: '{"adult":false,"backdrop_path":"/rSPw7tgCH9c6NqICZef4kZjFOQ5.jpg","belongs_to_collection":{"id":230,"name":"The
@@ -83,7 +71,7 @@ http_interactions:
         Productions","origin_country":"US"}],"production_countries":[{"iso_3166_1":"US","name":"United
         States of America"}],"release_date":"1972-03-14","revenue":245066411,"runtime":175,"spoken_languages":[{"english_name":"English","iso_639_1":"en","name":"English"},{"english_name":"Italian","iso_639_1":"it","name":"Italiano"},{"english_name":"Latin","iso_639_1":"la","name":"Latin"}],"status":"Released","tagline":"An
         offer you can''t refuse.","title":"The Godfather","video":false,"vote_average":8.7,"vote_count":16237}'
-  recorded_at: Tue, 19 Jul 2022 21:38:13 GMT
+  recorded_at: Tue, 19 Jul 2022 23:21:00 GMT
 - request:
     method: get
     uri: https://api.themoviedb.org/3/movie/238?api_key=a0bdbbc4cfeaa81422c5217575fe9d53
@@ -102,59 +90,47 @@ http_interactions:
       code: 200
       message: OK
     headers:
-      Date:
-      - Tue, 19 Jul 2022 21:38:14 GMT
       Content-Type:
-      - application/json; charset=utf-8
+      - application/json;charset=utf-8
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      Vary:
-      - Accept-Encoding
+      Date:
+      - Tue, 19 Jul 2022 21:22:37 GMT
       Server:
-      - BunnyCDN-NY-885
-      Cdn-Pullzone:
-      - '775334'
-      Cdn-Uid:
-      - 29af4e0e-bcbd-4fcb-8635-74ddc38a1ebf
-      Cdn-Requestcountrycode:
-      - US
-      Access-Control-Allow-Methods:
-      - GET, HEAD, POST, PUT, DELETE, OPTIONS
+      - openresty
       Access-Control-Allow-Origin:
       - "*"
+      Access-Control-Allow-Methods:
+      - GET, HEAD, POST, PUT, DELETE, OPTIONS
       Access-Control-Expose-Headers:
       - ETag, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, Retry-After,
         Content-Length, Content-Range
       Cache-Control:
       - public, max-age=28800
-      Etag:
-      - W/"11f4175ba26e241bff332128a8924ca5"
       X-Memc:
       - HIT
       X-Memc-Key:
       - 647ad0139961d413fe867b26138edd06a9b4ce4d
       X-Memc-Age:
-      - '15989'
+      - '15053'
       X-Memc-Expires:
-      - '129'
-      Cdn-Proxyver:
-      - '1.02'
-      Cdn-Requestpullsuccess:
-      - 'True'
-      Cdn-Requestpullcode:
-      - '200'
-      Cdn-Cachedat:
-      - 07/19/2022 21:38:13
-      Cdn-Edgestorageid:
-      - '885'
-      Cdn-Status:
-      - '200'
-      Cdn-Requestid:
-      - beedd84df124accfeea947d4f8b5c4ce
-      Cdn-Cache:
-      - HIT
+      - '1065'
+      Etag:
+      - W/"11f4175ba26e241bff332128a8924ca5"
+      Vary:
+      - Accept-Encoding
+      X-Cache:
+      - Hit from cloudfront
+      Via:
+      - 1.1 235fa9476ee502b13c0801d1fa3b57a2.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - DEN50-C2
+      X-Amz-Cf-Id:
+      - phYsLZ_Zh4p4YubNN2b6oQZ_udFjpwrCAdAXU8LsSNqq2xtxdraM9Q==
+      Age:
+      - '7103'
     body:
       encoding: ASCII-8BIT
       string: '{"adult":false,"backdrop_path":"/rSPw7tgCH9c6NqICZef4kZjFOQ5.jpg","belongs_to_collection":{"id":230,"name":"The
@@ -167,7 +143,7 @@ http_interactions:
         Productions","origin_country":"US"}],"production_countries":[{"iso_3166_1":"US","name":"United
         States of America"}],"release_date":"1972-03-14","revenue":245066411,"runtime":175,"spoken_languages":[{"english_name":"English","iso_639_1":"en","name":"English"},{"english_name":"Italian","iso_639_1":"it","name":"Italiano"},{"english_name":"Latin","iso_639_1":"la","name":"Latin"}],"status":"Released","tagline":"An
         offer you can''t refuse.","title":"The Godfather","video":false,"vote_average":8.7,"vote_count":16237}'
-  recorded_at: Tue, 19 Jul 2022 21:38:13 GMT
+  recorded_at: Tue, 19 Jul 2022 23:21:00 GMT
 - request:
     method: get
     uri: https://api.themoviedb.org/3/movie/238?api_key=a0bdbbc4cfeaa81422c5217575fe9d53
@@ -186,59 +162,47 @@ http_interactions:
       code: 200
       message: OK
     headers:
-      Date:
-      - Tue, 19 Jul 2022 21:38:14 GMT
       Content-Type:
-      - application/json; charset=utf-8
+      - application/json;charset=utf-8
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      Vary:
-      - Accept-Encoding
+      Date:
+      - Tue, 19 Jul 2022 21:22:37 GMT
       Server:
-      - BunnyCDN-NY-885
-      Cdn-Pullzone:
-      - '775334'
-      Cdn-Uid:
-      - 29af4e0e-bcbd-4fcb-8635-74ddc38a1ebf
-      Cdn-Requestcountrycode:
-      - US
-      Access-Control-Allow-Methods:
-      - GET, HEAD, POST, PUT, DELETE, OPTIONS
+      - openresty
       Access-Control-Allow-Origin:
       - "*"
+      Access-Control-Allow-Methods:
+      - GET, HEAD, POST, PUT, DELETE, OPTIONS
       Access-Control-Expose-Headers:
       - ETag, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, Retry-After,
         Content-Length, Content-Range
       Cache-Control:
       - public, max-age=28800
-      Etag:
-      - W/"11f4175ba26e241bff332128a8924ca5"
       X-Memc:
       - HIT
       X-Memc-Key:
       - 647ad0139961d413fe867b26138edd06a9b4ce4d
       X-Memc-Age:
-      - '15989'
+      - '15053'
       X-Memc-Expires:
-      - '129'
-      Cdn-Proxyver:
-      - '1.02'
-      Cdn-Requestpullsuccess:
-      - 'True'
-      Cdn-Requestpullcode:
-      - '200'
-      Cdn-Cachedat:
-      - 07/19/2022 21:38:13
-      Cdn-Edgestorageid:
-      - '885'
-      Cdn-Status:
-      - '200'
-      Cdn-Requestid:
-      - 318a01ed3f0d2949242d46f55b1cb7e9
-      Cdn-Cache:
-      - HIT
+      - '1065'
+      Etag:
+      - W/"11f4175ba26e241bff332128a8924ca5"
+      Vary:
+      - Accept-Encoding
+      X-Cache:
+      - Hit from cloudfront
+      Via:
+      - 1.1 e158a5cd644f102abc630a9f56b59d78.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - DEN50-C2
+      X-Amz-Cf-Id:
+      - 1E-VW9am7sTquwcXxk9dnTvOcuTn9R-oxbh1EmGWJC4tMmCZQ8hilw==
+      Age:
+      - '7103'
     body:
       encoding: ASCII-8BIT
       string: '{"adult":false,"backdrop_path":"/rSPw7tgCH9c6NqICZef4kZjFOQ5.jpg","belongs_to_collection":{"id":230,"name":"The
@@ -251,5 +215,5 @@ http_interactions:
         Productions","origin_country":"US"}],"production_countries":[{"iso_3166_1":"US","name":"United
         States of America"}],"release_date":"1972-03-14","revenue":245066411,"runtime":175,"spoken_languages":[{"english_name":"English","iso_639_1":"en","name":"English"},{"english_name":"Italian","iso_639_1":"it","name":"Italiano"},{"english_name":"Latin","iso_639_1":"la","name":"Latin"}],"status":"Released","tagline":"An
         offer you can''t refuse.","title":"The Godfather","video":false,"vote_average":8.7,"vote_count":16237}'
-  recorded_at: Tue, 19 Jul 2022 21:38:14 GMT
+  recorded_at: Tue, 19 Jul 2022 23:21:00 GMT
 recorded_with: VCR 6.1.0

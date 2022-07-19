@@ -13,17 +13,19 @@ RSpec.describe 'movie show page' do
             "name": "Crime"
         }
     ], runtime: 175, vote_average: 8.7, summary: "In the continuing saga of the Corleone crime family, a young Vito Corleone grows up in Sicily and in 1910s New York. In the 1950s, Michael Corleone attempts to expand the family business into Las Vegas, Hollywood and Cuba.")
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user1)
-    
   end
 
   it 'has a button to create a viewing party', :vcr do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user1)
+
     visit "/movies/#{@movie1.id}"
     click_button('Create Viewing Party for The Godfather')
     expect(current_path).to eq("/movies/#{@movie1.id}/viewing_party/new")
   end
 
   it 'has a button to return to Discover page', :vcr do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user1)
+
     visit "/movies/#{@movie1.id}"
     expect(page).to have_button('Discover Page')
 
@@ -32,30 +34,40 @@ RSpec.describe 'movie show page' do
   end
 
   it 'displays the movie title', :vcr do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user1)
+
     visit "/movies/#{@movie1.id}"
     expect(page).to have_content('The Godfather')
     expect(page).to_not have_content('The Exorcist')
   end
 
   it "display's the movie's vote average", :vcr do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user1)
+
     visit "/movies/#{@movie1.id}"
     expect(page).to have_content('Vote Average: 8.7')
     expect(page).to_not have_content('Vote Average: 2.5')
   end
 
   it "displays the movie's runtime", :vcr do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user1)
+
     visit "/movies/#{@movie1.id}"
     expect(page).to have_content('Runtime: 2h 55min')
     expect(page).to_not have_content('Runtime: 175min')
   end
 
   it "displays the movie's summary", :vcr do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user1)
+
     visit "/movies/#{@movie1.id}"
     expect(page).to have_content("Summary: Spanning the years 1945 to 1955, a chronicle of the fictional Italian-American Corleone crime family. When organized crime family patriarch, Vito Corleone barely survives an attempt on his life, his youngest son, Michael steps in to take care of the would-be killers, launching a campaign of bloody revenge.")
     expect(page).to_not have_content("Something else.")
   end
 
   it "displays the movie's genres", :vcr do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user1)
+
     visit "/movies/#{@movie1.id}"
     expect(page).to have_content("Drama Crime")
     expect(page).to_not have_content("Romance")
@@ -65,6 +77,8 @@ RSpec.describe 'movie show page' do
 
   it "displays list of 10 first cast members", :vcr do
     @user = User.create!(name: 'Badger', email: 'honey@gmail.com', password: 'honeybadger')
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+
     visit "movies/238"
 
     expect(page).to have_content("Actor: Marlon Brando is Character: Don Vito Corleone")
@@ -82,6 +96,8 @@ RSpec.describe 'movie show page' do
 
   it "displays count of total reviews", :vcr do
     @user = User.create!(name: 'Badger', email: 'honey@gmail.com', password: 'honeybadger')
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+
     visit "movies/#{@movie1.id}"
 
     expect(page).to have_content("1")
@@ -90,6 +106,8 @@ RSpec.describe 'movie show page' do
 
   it "displays each review's author and information", :vcr do
     @user = User.create!(name: 'Badger', email: 'honey@gmail.com', password: 'honeybadger')
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+
     visit "movies/#{@movie1.id}"
 
     expect(page).to have_content("The Godfather Review")
@@ -98,11 +116,13 @@ RSpec.describe 'movie show page' do
   end
 
   describe 'authorization', :vcr do
-    it 'cant create a viewing party unless logged in' do 
+    it 'cant create a viewing party unless logged in' do
+      user = User.create(name: 'RubyLover', email: 'rubydooby@rails.com', password: 'rubyrocks')
+
       visit "movies/#{@movie1.id}"
 
       click_on 'Create Viewing Party for The Godfather'
-      expect(current_path).to eq("movies/#{@movie1.id}")
+      expect(current_path).to eq("/movies/#{@movie1.id}")
       expect(page).to have_content('Must be logged in or registered to create party')
     end
   end
