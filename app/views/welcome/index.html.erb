@@ -2,15 +2,14 @@
 
 <% if current_user %>
   <%= link_to 'Log Out', '/logout', method: :delete, local: true %>
+  <h3>Users</h3>
+  <% @users.each do |user| %>
+  <div id="user-<%= user.id %>">
+    <p>Name: <%= link_to "#{user.name}", '/dashboard' %></p>
+    <p>Email: <%= user.email %></p>
+  </div>
+  <% end %>
 <% else %>
   <%= link_to 'Log In', '/login', method: :get %>
   <%= button_to 'Create a New User', '/register', method: :get %>
-<% end %>
-
-<h3>Users</h3>
-<% @users.each do |user| %>
-<div id="user-<%= user.id %>">
-  <p>Name: <%= link_to "#{user.name}", '/dashboard' %></p>
-  <p>Email: <%= user.email %></p>
-</div>
 <% end %>

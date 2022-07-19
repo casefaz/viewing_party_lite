@@ -72,12 +72,25 @@ RSpec.describe 'Welcome Index', type: :feature do
       fill_in 'Email', with: 'rubydooby@rails.com'
       fill_in 'Password', with: 'rubyrocks'
       click_on 'Log In'
-      
+
       visit root_path
 
       click_link('Log Out')
       expect(current_path).to eq(root_path)
       expect(page).to have_link('Log In')
+    end
+  end
+
+  describe 'authentication' do 
+    it 'doesnt have a list of users on the landing page' do 
+      user1 = User.create!(name: 'Deannah', email: 'rockyhorrorfan@gmail.com', password: 'thebestoneyet')
+      user2 = User.create!(name: 'Sai', email: 'skunkwars@hotmail.com', password: 'maythebestskunkwin')
+
+      visit root_path
+
+      expect(page).to have_content('Log In')
+      expect(page).to_not have_content(user1.email)
+      expect(page).to_not have_content(user2.email)
     end
   end
 end
