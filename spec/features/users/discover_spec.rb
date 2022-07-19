@@ -5,19 +5,20 @@ RSpec.describe 'Discover Page', type: :feature do
     it 'has is the same user id from the dashboard' do
       user1 = User.create!(name: 'Parker', email: 'mangaforever@hootube.net', password: 'mangaforever')
       user2 = User.create!(name: 'Jim', email: 'musk42@trenches.org', password: 'malort')
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user1)
 
-      visit user_discover_path(user1.id)
+      visit '/discover'
 
-      expect(page).to have_content("#{user1.name}'s Discover Page")
-      expect(page).to_not have_content("#{user2.name}'s Discover Page")
+      expect(page).to have_content("Discover Page")
     end
   end 
 
   describe 'top rated movies button' do 
     it 'has button to discover top rated movies', :vcr do
       user1 = User.create!(name: 'Parker', email: 'mangaforever@hootube.net', password: 'mangaforever')
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user1)
 
-      visit user_discover_path(user1.id)
+      visit '/discover'
 
       expect(page).to have_button('Discover Top Rated Movies')
 
@@ -29,8 +30,9 @@ RSpec.describe 'Discover Page', type: :feature do
   describe 'search field' do 
     it 'has a text field to enter keyword(s) to search by movie title' do
       user1 = User.create!(name: 'Parker', email: 'mangaforever@hootube.net', password: 'mangaforever')
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user1)
 
-      visit user_discover_path(user1.id)
+      visit '/discover'
 
       within '.movieSearch' do
         expect(page).to have_field('search', placeholder: 'Search by movie title')
@@ -39,8 +41,9 @@ RSpec.describe 'Discover Page', type: :feature do
 
     it 'has a Button to Search by Movie Title', :vcr do
       user1 = User.create!(name: 'Parker', email: 'mangaforever@hootube.net', password: 'mangaforever')
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user1)
       
-      visit user_discover_path(user1.id)
+      visit '/discover'
 
       within '.movieSearch' do 
         expect(page).to have_button('Find Movies')
