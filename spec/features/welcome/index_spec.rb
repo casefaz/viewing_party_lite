@@ -64,9 +64,15 @@ RSpec.describe 'Welcome Index', type: :feature do
     end
 
     it 'logs out the user' do 
-      user1 = User.create!(name: 'Deannah', email: 'rockyhorrorfan@gmail.com', password: 'thebestoneyet')
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user1)
+      user = User.create(name: 'RubyLover', email: 'rubydooby@rails.com', password: 'rubyrocks')
+      visit root_path
 
+      click_link('Log In')
+      expect(current_path).to eq('/login')
+      fill_in 'Email', with: 'rubydooby@rails.com'
+      fill_in 'Password', with: 'rubyrocks'
+      click_on 'Log In'
+      
       visit root_path
 
       click_link('Log Out')
