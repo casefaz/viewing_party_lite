@@ -18,13 +18,13 @@ RSpec.describe 'movie show page' do
   end
 
   it 'has a button to create a viewing party', :vcr do
-    visit user_movie_path(@user1.id, @movie1.id)
+    visit "/movies/#{@movie1.id}"
     click_button('Create Viewing Party for The Godfather')
     expect(current_path).to eq(new_user_movie_viewing_party_path(@user1.id, @movie1.id))
   end
 
   it 'has a button to return to Discover page', :vcr do
-    visit user_movie_path(@user1.id, @movie1.id)
+    visit "/movies/#{@movie1.id}"
     expect(page).to have_button('Discover Page')
 
     click_button('Discover Page')
@@ -32,31 +32,31 @@ RSpec.describe 'movie show page' do
   end
 
   it 'displays the movie title', :vcr do
-    visit user_movie_path(@user1.id, @movie1.id)
+    visit "/movies/#{@movie1.id}"
     expect(page).to have_content('The Godfather')
     expect(page).to_not have_content('The Exorcist')
   end
 
   it "display's the movie's vote average", :vcr do
-    visit user_movie_path(@user1.id, @movie1.id)
+    visit "/movies/#{@movie1.id}"
     expect(page).to have_content('Vote Average: 8.7')
     expect(page).to_not have_content('Vote Average: 2.5')
   end
 
   it "displays the movie's runtime", :vcr do
-    visit user_movie_path(@user1.id, @movie1.id)
+    visit "/movies/#{@movie1.id}"
     expect(page).to have_content('Runtime: 2h 55min')
     expect(page).to_not have_content('Runtime: 175min')
   end
 
   it "displays the movie's summary", :vcr do
-    visit user_movie_path(@user1.id, @movie1.id)
+    visit "/movies/#{@movie1.id}"
     expect(page).to have_content("Summary: Spanning the years 1945 to 1955, a chronicle of the fictional Italian-American Corleone crime family. When organized crime family patriarch, Vito Corleone barely survives an attempt on his life, his youngest son, Michael steps in to take care of the would-be killers, launching a campaign of bloody revenge.")
     expect(page).to_not have_content("Something else.")
   end
 
   it "displays the movie's genres", :vcr do
-    visit user_movie_path(@user1.id, @movie1.id)
+    visit "/movies/#{@movie1.id}"
     expect(page).to have_content("Drama Crime")
     expect(page).to_not have_content("Romance")
   end
@@ -65,7 +65,7 @@ RSpec.describe 'movie show page' do
 
   it "displays list of 10 first cast members", :vcr do
     @user = User.create!(name: 'Badger', email: 'honey@gmail.com', password: 'honeybadger')
-    visit user_movie_path(@user.id, 238)
+    visit "movies/238"
 
     expect(page).to have_content("Actor: Marlon Brando is Character: Don Vito Corleone")
     expect(page).to have_content("Actor: Al Pacino is Character: Don Michael Corleone")
@@ -82,7 +82,7 @@ RSpec.describe 'movie show page' do
 
   it "displays count of total reviews", :vcr do
     @user = User.create!(name: 'Badger', email: 'honey@gmail.com', password: 'honeybadger')
-    visit user_movie_path(@user.id, 238)
+    visit "movies/238"
 
     expect(page).to have_content("1")
     expect(page).to_not have_content("3")
@@ -90,7 +90,7 @@ RSpec.describe 'movie show page' do
 
   it "displays each review's author and information", :vcr do
     @user = User.create!(name: 'Badger', email: 'honey@gmail.com', password: 'honeybadger')
-    visit user_movie_path(@user.id, 238)
+    visit "movies/238"
 
     expect(page).to have_content("The Godfather Review")
     expect(page).to_not have_content("none")
