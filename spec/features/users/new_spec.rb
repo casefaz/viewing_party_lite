@@ -12,7 +12,7 @@ RSpec.describe 'New User Form' do
       click_on 'Register'
 
       last_user = User.last
-      expect(current_path).to eq(user_path(last_user.id))
+      expect(current_path).to eq('/dashboard')
       expect(page).to have_content("Welcome, #{last_user.email}!")
       expect(page).to_not have_content('Cannot register, missing or repeated information')
     end
@@ -62,7 +62,7 @@ RSpec.describe 'New User Form' do
         click_on 'Register'
 
         current_user = User.last
-        expect(current_path).to eq("/users/#{current_user.id}")
+        expect(current_path).to eq("/dashboard")
         expect(page).to have_content("Welcome, #{current_user.email}!")
       end
     end 
