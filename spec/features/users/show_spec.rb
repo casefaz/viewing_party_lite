@@ -6,8 +6,9 @@ RSpec.describe 'User Dashboard Page', type: :feature do
     it 'shows user name on dashboard' do
       user1 = User.create!(name: 'Parker', email: 'mangaforever@hootube.net', password: 'mangaforever')
       user2 = User.create!(name: 'Lola', email: 'lola@example.com', password: 'bugs4life')
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user1)
 
-      visit user_path(user1.id)
+      visit '/dashboard'
       expect(page).to have_content("#{user1.name}'s Dashboard")
       expect(page).to_not have_content("#{user2.name}'s Dashboard")
     end
@@ -15,8 +16,9 @@ RSpec.describe 'User Dashboard Page', type: :feature do
     it 'has a button to Discover Movies' do
       user1 = User.create!(name: 'Parker', email: 'mangaforever@hootube.net', password: 'mangaforever')
       user2 = User.create!(name: 'Lola', email: 'lola@example.com', password: 'bugs4life')
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user1)
 
-      visit user_path(user1.id)
+      visit '/dashboard'
 
       expect(page).to have_button('Discover Movies')
       click_button('Discover Movies')
@@ -30,8 +32,9 @@ RSpec.describe 'User Dashboard Page', type: :feature do
     it "has a section that lists the viewing parties" do
       user1 = User.create!(name: 'Parker', email: 'mangaforever@hootube.net', password: 'mangaforever')
       user2 = User.create!(name: 'Lola', email: 'lola@example.com', password: 'bugs4life')
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user1)
   
-      visit user_path(user1.id)
+      visit '/dashboard'
       expect(page).to have_content("Viewing Parties")
     end
 
@@ -46,8 +49,9 @@ RSpec.describe 'User Dashboard Page', type: :feature do
       user_viewing1 = UserViewingParty.create!(user_id: user1.id, viewing_party_id: party1.id, host: false)
       user_viewing2 = UserViewingParty.create!(user_id: user1.id, viewing_party_id: party2.id, host: false)
       user_viewing3 = UserViewingParty.create!(user_id: user2.id, viewing_party_id: party3.id, host: false)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user1)
 
-      visit user_path(user1.id)
+      visit '/dashboard'
 
       within '.invites' do 
         expect(page).to have_content('Spirited Away')
@@ -62,8 +66,9 @@ RSpec.describe 'User Dashboard Page', type: :feature do
       user1 = User.create!(name: 'Parker', email: 'mangaforever@hootube.net', password: 'mangaforever')
       party1 = ViewingParty.create!(movie_id: 129, duration: 96, date: Date.new(2022,9,7), start_time: "16:00:00")
       user_viewing1 = UserViewingParty.create!(user_id: user1.id, viewing_party_id: party1.id, host: false)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user1)
 
-      visit user_path(user1.id)
+      visit '/dashboard'
 
       within '.invites' do 
         expect(page).to have_content("Date: Sep 7, 2022")
@@ -81,8 +86,9 @@ RSpec.describe 'User Dashboard Page', type: :feature do
       user_viewing1 = UserViewingParty.create!(user_id: user1.id, viewing_party_id: party1.id, host: false)
       user_viewing2 = UserViewingParty.create!(user_id: user2.id, viewing_party_id: party1.id, host: false)
       user_viewing3 = UserViewingParty.create!(user_id: user3.id, viewing_party_id: party1.id, host: true)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user1)
 
-      visit user_path(user1.id)
+      visit '/dashboard'
 
       within '.invites' do 
         expect(page).to have_content("Host: Squiggles")
@@ -102,8 +108,9 @@ RSpec.describe 'User Dashboard Page', type: :feature do
       user_viewing2 = UserViewingParty.create!(user_id: user2.id, viewing_party_id: party1.id, host: false)
       user_viewing3 = UserViewingParty.create!(user_id: user3.id, viewing_party_id: party1.id, host: true)
       user_viewing4 = UserViewingParty.create!(user_id: user4.id, viewing_party_id: party1.id, host: false)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user1)
 
-      visit user_path(user1.id)
+      visit '/dashboard'
 
       within ".guests" do 
         expect(page).to have_content("Parker")
@@ -128,8 +135,9 @@ RSpec.describe 'User Dashboard Page', type: :feature do
       user_viewing4 = UserViewingParty.create!(user_id: user4.id, viewing_party_id: party1.id, host: false)
       user_viewing5 = UserViewingParty.create!(user_id: user1.id, viewing_party_id: party2.id, host: false)
       user_viewing6 = UserViewingParty.create!(user_id: user2.id, viewing_party_id: party2.id, host: true)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user1)
 
-      visit user_path(user1.id)
+      visit '/dashboard'
 
       within '.hostParty' do 
         expect(page).to have_content('Host: Parker')
@@ -157,8 +165,9 @@ RSpec.describe 'User Dashboard Page', type: :feature do
       user_viewing2 = UserViewingParty.create!(user_id: user2.id, viewing_party_id: party1.id, host: false)
       user_viewing3 = UserViewingParty.create!(user_id: user3.id, viewing_party_id: party1.id, host: false)
       user_viewing4 = UserViewingParty.create!(user_id: user4.id, viewing_party_id: party1.id, host: false)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user1)
 
-      visit user_path(user1.id)
+      visit '/dashboard'
 
       within '.friends' do 
         expect(page).to have_content('Lola')

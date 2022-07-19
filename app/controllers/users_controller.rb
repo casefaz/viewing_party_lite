@@ -5,14 +5,15 @@ class UsersController < ApplicationController
 
 
   def show
-    @user = User.find(params[:id])
+    @user = current_user
   end
 
   def create
     new_user = User.create(user_params)
     if new_user.save
+      session[:user_id] = new_user.id
       flash[:success] = "Welcome, #{new_user.email}!"
-      redirect_to user_path(new_user.id)
+      redirect_to '/dashboard'
     else
       flash[:error] = new_user.errors.full_messages
       redirect_to register_path
@@ -30,8 +31,9 @@ class UsersController < ApplicationController
   def login_user
     user = User.find_by(email: params[:email])
     if user && user.authenticate(params[:password])
+      session[:user_id] = user.id
       flash[:success] = "Welcome, #{user.email}!"
-      redirect_to "/users/#{user.id}"
+      redirect_to "/dashboard"
     else
       flash[:error] = "Incorrect credentials"
       redirect_to '/login'
