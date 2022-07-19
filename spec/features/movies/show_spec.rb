@@ -13,6 +13,8 @@ RSpec.describe 'movie show page' do
             "name": "Crime"
         }
     ], runtime: 175, vote_average: 8.7, summary: "In the continuing saga of the Corleone crime family, a young Vito Corleone grows up in Sicily and in 1910s New York. In the 1950s, Michael Corleone attempts to expand the family business into Las Vegas, Hollywood and Cuba.")
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user1)
+    
   end
 
   it 'has a button to create a viewing party', :vcr do
@@ -26,7 +28,7 @@ RSpec.describe 'movie show page' do
     expect(page).to have_button('Discover Page')
 
     click_button('Discover Page')
-    expect(current_path).to eq("/users/#{@user1.id}/discover")
+    expect(current_path).to eq("/discover")
   end
 
   it 'displays the movie title', :vcr do

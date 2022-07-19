@@ -21,7 +21,7 @@ class UsersController < ApplicationController
   end
 
   def discover
-    @user = current_user.id
+    @user = current_user
   end
 
   def login_form
