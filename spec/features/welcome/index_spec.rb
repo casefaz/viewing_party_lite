@@ -52,4 +52,26 @@ RSpec.describe 'Welcome Index', type: :feature do
       expect(current_path).to eq('/login')
     end
   end
+
+  describe 'logout link' do 
+    it 'has a link to log out if user is logged in' do 
+      user1 = User.create!(name: 'Deannah', email: 'rockyhorrorfan@gmail.com', password: 'thebestoneyet')
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user1)
+
+      visit root_path
+
+      expect(page).to have_link('Log Out')
+    end
+
+    it 'logs out the user' do 
+      user1 = User.create!(name: 'Deannah', email: 'rockyhorrorfan@gmail.com', password: 'thebestoneyet')
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user1)
+
+      visit root_path
+
+      click_link('Log Out')
+      expect(current_path).to eq(root_path)
+      expect(page).to have_link('Log In')
+    end
+  end
 end
