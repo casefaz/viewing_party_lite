@@ -92,5 +92,17 @@ RSpec.describe 'Welcome Index', type: :feature do
       expect(page).to_not have_content(user1.email)
       expect(page).to_not have_content(user2.email)
     end
+
+    it 'shows only emails if user is logged in' do 
+      user1 = User.create!(name: 'Deannah', email: 'rockyhorrorfan@gmail.com', password: 'thebestoneyet')
+      user2 = User.create!(name: 'Sai', email: 'skunkwars@hotmail.com', password: 'maythebestskunkwin')
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user1)
+
+      visit root_path
+
+      expect(page).to have_content(user1.email)
+      expect(page).to have_content(user2.email)
+      expect(page).to_not have_link(user1.name)
+    end
   end
 end
