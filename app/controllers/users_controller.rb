@@ -21,7 +21,7 @@ class UsersController < ApplicationController
   end
 
   def discover
-    @user = User.find(params[:user_id])
+    @user = current_user.id
   end
 
   def login_form

@@ -23,8 +23,8 @@ RSpec.describe 'User Dashboard Page', type: :feature do
       expect(page).to have_button('Discover Movies')
       click_button('Discover Movies')
 
-      expect(current_path).to eq("/users/#{user1.id}/discover")
-      expect(page).to have_content("#{user1.name}'s Discover Page")
+      expect(current_path).to eq("/discover")
+      expect(page).to have_content("Discover Page")
     end
   end
   
