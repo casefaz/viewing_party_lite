@@ -1,5 +1,5 @@
 <p><div class="container" align="center">
-  <%=button_to "Create Viewing Party for #{@movie.title}", new_user_movie_viewing_party_path(@user.id, @movie.id), method: :get %>
+  <%=button_to "Create Viewing Party for #{@movie.title}", "/movies/#{@movie.id}/viewing_party/new", method: :get %>
   <%= button_to "Discover Page", "/discover", method: :get %>
 </div></p>
 
