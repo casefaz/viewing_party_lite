@@ -9,9 +9,8 @@ Rails.application.routes.draw do
   get '/dashboard', to: 'users#show'
   get '/discover', to: 'users#discover'
   get '/movies/:id', to: 'movies#show'
+  get '/movies', to: 'movies#index'
   post '/movies/:id/viewing_party', to: 'viewing_party#create' 
   get '/movies/:id/viewing_party/new', to: 'viewing_party#new'
-  resources :users, only: [:create] do
-    resources :movies, only: [:index]
-  end
+  resources :users, only: [:create]
 end

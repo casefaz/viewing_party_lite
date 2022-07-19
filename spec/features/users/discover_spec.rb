@@ -23,7 +23,7 @@ RSpec.describe 'Discover Page', type: :feature do
       expect(page).to have_button('Discover Top Rated Movies')
 
       click_button "Discover Top Rated Movies"
-      expect(current_path).to eq(user_movies_path(user1.id))
+      expect(current_path).to eq('/movies')
     end
   end 
 
@@ -50,7 +50,7 @@ RSpec.describe 'Discover Page', type: :feature do
         fill_in :search, with: 'Godfather'
         click_button 'Find Movies'
       end 
-      expect(current_path).to eq(user_movies_path(user1.id))
+      expect(current_path).to eq('/movies')
       expect(page).to have_content('The Godfather')
       expect(page).to_not have_content('Spirited Away')
     end

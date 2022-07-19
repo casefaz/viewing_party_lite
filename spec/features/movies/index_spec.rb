@@ -6,7 +6,7 @@ RSpec.describe 'Movie Index Page', type: :feature do
       user1 = User.create!(name: 'Andrew', email: 'concertenthusiast@musac.org', password: '150concerts')
       user2 = User.create!(name: 'Sai', email: 'allthethings@hottooob.com', password: 'hotdog')
       
-      visit user_movies_path(user1.id)
+      visit '/movies'
       expect(page.all('.movies').count).to eq(20)
 
       within '.topMovies' do 
@@ -21,7 +21,7 @@ RSpec.describe 'Movie Index Page', type: :feature do
     it 'links back to the discovery page', :vcr do 
       user1 = User.create!(name: 'Andrew', email: 'concertenthusiast@musac.org', password: '150concerts')
       
-      visit user_movies_path(user1.id)
+      visit '/movies'
       
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user1)
       click_link 'Discover Page'
@@ -39,7 +39,7 @@ RSpec.describe 'Movie Index Page', type: :feature do
       
       fill_in :search, with: 'spirit'
       click_on 'Find Movies'
-      expect(current_path).to eq(user_movies_path(user1.id))
+      expect(current_path).to eq('/movies')
       expect(page).to have_content('Teen Spirit')
       expect(page).to have_content('Spirit Untamed')
       expect(page).to have_content('Blithe Spirit')
